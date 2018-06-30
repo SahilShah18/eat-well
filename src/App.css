@@ -26,3 +26,20 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.nav-bar{
+  padding: 8px;
+  color: #FFF;
+  background-color: #13ce66;
+  display: flex;
+  justify-content: space-between;
+}
+.nav-bar-logo{
+  margin: 0;
+  flex-grow: 1;
+  text-align: left;
+  padding: 0 8px;
+}
+.nav-bar-button{
+  padding: 8px;
+}
