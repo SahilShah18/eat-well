@@ -19,7 +19,6 @@ class App extends Component {
       <div className="App">
         <div className="nav-bar">
           <h1 className="nav-bar-logo">EatWell</h1>
-          <a className="nav-bar-button" title="Upload"><FaUpload/></a>
           <a className="nav-bar-button" title="Analyse" onClick={this.analyse.bind(this)}><FaBarChart/></a>
         </div>
         <Router>
