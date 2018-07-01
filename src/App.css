@@ -39,7 +39,7 @@
   color: #FFF;
   background-color: var(--accent-color);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 .nav-bar-logo{

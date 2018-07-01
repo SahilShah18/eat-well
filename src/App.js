@@ -19,7 +19,6 @@ class App extends Component {
       <div className="App">
         <div className="nav-bar">
           <h1 className="nav-bar-logo">EatWell</h1>
-          <a className="nav-bar-button" title="Analyse" onClick={this.analyse.bind(this)}><FaBarChart/></a>
         </div>
         <Router>
           <div className="page">
@@ -57,12 +56,13 @@ class App extends Component {
       <FaUpload/>
     </Fragment>;
   }
-  imageChosen(event) {
+  async imageChosen(event) {
     const imageFile = event.target.files[0];
     this.setState({
       imageFile,
       imageObjectUrl: URL.createObjectURL(imageFile),
     });
+    await this.analyse(imageFile);
   }
   imageWrapperStyle() {
     if(!this.state.imageFile){
@@ -72,9 +72,9 @@ class App extends Component {
       backgroundImage: `url(${this.state.imageObjectUrl})`,
     };
   }
-  async analyse() {
+  async analyse(file) {
     console.log('sent')
-    console.log(await visionApi(this.state.imageFile))
+    console.log(await visionApi(file))
   }
 }
 
