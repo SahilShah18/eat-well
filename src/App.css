@@ -58,6 +58,10 @@
   flex-direction: column;
   justify-content: space-between;
 }
+.loader{
+  display: flex;
+  justify-content: center;
+}
 .snap-your-meal{
   flex-grow: 1;
   display: flex;

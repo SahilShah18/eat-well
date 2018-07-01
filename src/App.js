@@ -10,6 +10,8 @@ import FaBarChart from 'react-icons/lib/fa/bar-chart';
 import FaThumbsUp from 'react-icons/lib/fa/thumbs-up';
 import FaThumbsDown from 'react-icons/lib/fa/thumbs-down';
 
+import { PacmanLoader } from 'react-spinners';
+
 import logo from './logo.svg';
 import './App.css';
 
@@ -24,13 +26,20 @@ class App extends Component {
           <div className="page">
             <Route path="/" exact>
               <div className="snap-your-meal">
-                <h2>Snap your meal to see if it's</h2>
-                <div className="thumbs-up-or-down">
-                  <FaThumbsUp className="thumbs-up"/>
-                  <div className="thumbs-or">Or</div>
-                  <FaThumbsDown className="thumbs-down"/>
-                </div>
+                {this.state.analysingImage ? <div className="loader"><PacmanLoader/></div> : (
+                  <Fragment>
+                    <h2>Snap your meal to see if it's</h2>
+                    <div className="thumbs-up-or-down">
+                      <FaThumbsUp className="thumbs-up"/>
+                      <div className="thumbs-or">Or</div>
+                      <FaThumbsDown className="thumbs-down"/>
+                    </div>
+                  </Fragment>
+                )}
               </div>
+            </Route>
+            <Route path="/nutrition">
+
             </Route>
             <label className="image-placeholder" style={this.imageWrapperStyle()}>
               {this.imageUploader()}
@@ -45,6 +54,7 @@ class App extends Component {
     this.state = {
       imageFile: null,
       imageObjectUrl: null,
+      analysingImage: false,
     };
   }
   imageUploader(){
@@ -59,10 +69,15 @@ class App extends Component {
   async imageChosen(event) {
     const imageFile = event.target.files[0];
     this.setState({
+      analysingImage: true,
       imageFile,
       imageObjectUrl: URL.createObjectURL(imageFile),
     });
     await this.analyse(imageFile);
+
+    this.setState({
+      analysingImage: false,
+    });
   }
   imageWrapperStyle() {
     if(!this.state.imageFile){
