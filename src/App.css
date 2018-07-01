@@ -1,5 +1,12 @@
+:root{
+  --accent-color: #13ce66;
+}
+
 .App {
   text-align: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .App-logo {
@@ -30,9 +37,10 @@
 .nav-bar{
   padding: 8px;
   color: #FFF;
-  background-color: #13ce66;
+  background-color: var(--accent-color);
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .nav-bar-logo{
   margin: 0;
@@ -42,4 +50,41 @@
 }
 .nav-bar-button{
   padding: 8px;
+  font-size: 2em;
+}
+.page{
+  flex-grow: 1;
+}
+.snap-your-meal{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.thumbs-up-or-down{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4em;
+}
+.thumbs-up{
+  color: var(--accent-color);
+}
+.thumbs-down{
+  color: #F95F62;
+}
+.thumbs-or{
+  margin: 0 16px;
+  font-size: 0.5em;
+}
+.image-placeholder{
+  border: 2px dashed var(--accent-color);
+  color: var(--accent-color);
+  height: 50%;
+  margin: 32px;
+  font-size: 6em;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

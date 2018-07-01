@@ -7,6 +7,9 @@ import {
 
 import FaUpload from 'react-icons/lib/fa/upload';
 import FaBarChart from 'react-icons/lib/fa/bar-chart';
+import FaThumbsUp from 'react-icons/lib/fa/thumbs-up';
+import FaThumbsDown from 'react-icons/lib/fa/thumbs-down';
+
 import logo from './logo.svg';
 import './App.css';
 
@@ -21,7 +24,16 @@ class App extends Component {
         </div>
         <Router>
           <Route path="/" exact>
-            <div>
+            <div className="page snap-your-meal">
+              <h2>Snap your meal to see if it's</h2>
+              <div className="thumbs-up-or-down">
+                <FaThumbsUp className="thumbs-up"/>
+                <div className="thumbs-or">Or</div>
+                <FaThumbsDown className="thumbs-down"/>
+              </div>
+              <div className="image-placeholder">
+                <FaUpload/>
+              </div>
             </div>
           </Route>
         </Router>
