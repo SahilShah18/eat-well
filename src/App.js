@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -51,10 +51,10 @@ class App extends Component {
     if(this.state.imageFile){
       return;
     }
-    return [
-      <input type="file" onInput={this.imageChosen.bind(this)}/>,
-      <FaUpload/>,
-    ];
+    return <Fragment>
+      <input type="file" onInput={this.imageChosen.bind(this)}/>
+      <FaUpload/>
+    </Fragment>;
   }
   imageChosen(event) {
     const imageFile = event.target.files[0];
