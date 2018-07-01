@@ -23,19 +23,21 @@ class App extends Component {
           <a className="nav-bar-button" title="Analyse" onClick={this.analyse.bind(this)}><FaBarChart/></a>
         </div>
         <Router>
-          <Route path="/" exact>
-            <div className="page snap-your-meal">
-              <h2>Snap your meal to see if it's</h2>
-              <div className="thumbs-up-or-down">
-                <FaThumbsUp className="thumbs-up"/>
-                <div className="thumbs-or">Or</div>
-                <FaThumbsDown className="thumbs-down"/>
+          <div className="page">
+            <Route path="/" exact>
+              <div className="snap-your-meal">
+                <h2>Snap your meal to see if it's</h2>
+                <div className="thumbs-up-or-down">
+                  <FaThumbsUp className="thumbs-up"/>
+                  <div className="thumbs-or">Or</div>
+                  <FaThumbsDown className="thumbs-down"/>
+                </div>
               </div>
-              <label className="image-placeholder" style={this.imageWrapperStyle()}>
-                {this.imageUploader()}
-              </label>
-            </div>
-          </Route>
+            </Route>
+            <label className="image-placeholder" style={this.imageWrapperStyle()}>
+              {this.imageUploader()}
+            </label>
+          </div>
         </Router>
       </div>
     );
