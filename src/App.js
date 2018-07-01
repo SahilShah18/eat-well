@@ -20,7 +20,7 @@ class App extends Component {
         <div className="nav-bar">
           <h1 className="nav-bar-logo">EatWell</h1>
           <a className="nav-bar-button" title="Upload"><FaUpload/></a>
-          <a className="nav-bar-button" title="Analyse"><FaBarChart/></a>
+          <a className="nav-bar-button" title="Analyse" onClick={this.analyse.bind(this)}><FaBarChart/></a>
         </div>
         <Router>
           <Route path="/" exact>
@@ -71,6 +71,45 @@ class App extends Component {
       backgroundImage: `url(${this.state.imageObjectUrl})`,
     };
   }
+  async analyse() {
+    console.log('sent')
+    console.log(await visionApi(this.state.imageFile))
+  }
 }
 
 export default App;
+
+
+function encodeBase64(file){
+  return new Promise(resolve => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const dataUrl = reader.result;
+      const base64 = dataUrl.split(',').pop();
+      resolve(base64);
+    };
+    reader.readAsDataURL(file);
+  });
+}
+async function visionApi(file){
+  const API_KEY = 'AIzaSyCBIGRgOtzjIXxjRTCjUXqu92sSJy0ol8c';
+  const encoded = await encodeBase64(file);
+  console.log(encoded)
+  const response = await fetch(`https://vision.googleapis.com/v1/images:annotate?key=${API_KEY}`, {
+    method: 'POST',
+    cors: true,
+    body: JSON.stringify({
+      requests: [
+        {
+          image: {
+            content: encoded,
+          },
+          features: [
+            { type: 'LABEL_DETECTION' },
+          ],
+        },
+      ],
+    }),
+  });
+  return response.json();
+}
