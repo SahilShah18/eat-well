@@ -83,7 +83,7 @@
 .image-placeholder{
   border: 2px dashed var(--accent-color);
   color: var(--accent-color);
-  height: 50%;
+  height: 50vh;
   margin: 32px;
   font-size: 6em;
 
