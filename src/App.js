@@ -31,14 +31,45 @@ class App extends Component {
                 <div className="thumbs-or">Or</div>
                 <FaThumbsDown className="thumbs-down"/>
               </div>
-              <div className="image-placeholder">
-                <FaUpload/>
-              </div>
+              <label className="image-placeholder" style={this.imageWrapperStyle()}>
+                {this.imageUploader()}
+              </label>
             </div>
           </Route>
         </Router>
       </div>
     );
+  }
+  constructor(props) {
+    super(props);
+    this.state = {
+      imageFile: null,
+      imageObjectUrl: null,
+    };
+  }
+  imageUploader(){
+    if(this.state.imageFile){
+      return;
+    }
+    return [
+      <input type="file" onInput={this.imageChosen.bind(this)}/>,
+      <FaUpload/>,
+    ];
+  }
+  imageChosen(event) {
+    const imageFile = event.target.files[0];
+    this.setState({
+      imageFile,
+      imageObjectUrl: URL.createObjectURL(imageFile),
+    });
+  }
+  imageWrapperStyle() {
+    if(!this.state.imageFile){
+      return;
+    }
+    return {
+      backgroundImage: `url(${this.state.imageObjectUrl})`,
+    };
   }
 }
 
